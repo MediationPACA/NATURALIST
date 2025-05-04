@@ -11,24 +11,9 @@
         overflow: hidden; 
     }
 </style>
-  <script src="auth.js"></script>
-  <script>
-    window.onbeforeunload = function() {
-        return undefined; 
-    };
-
-    window.onload = function() {
-        window.scrollTo(0, 0); 
-    };
-</script>
-  <script>
-    try {
-      checkAccess();
-    } catch (error) {
-      console.error("Erreur lors de la vérification d'accès :", error);
-    }
-  </script>
-  
+ 
+   
+ 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
   <style>
@@ -103,7 +88,7 @@
         }
   </style>
 </head>
-<body onload="checkAccess()">
+<body>
   <div class="header">
     <h1>Urgence 2025</h1>
     <p>
@@ -116,8 +101,10 @@
     </p>
     <p class="phone">0483650279</p>
   </div>
-  <p class="page">Médiation</p>
+  <p class="page">Données naturalistes Reanard  </p>
 
+
+  <button class= "sites" onclick="window.location.href='NATURALIST.html'"> Chiro </button>
 
   <div id="map"></div>
 
@@ -129,7 +116,6 @@
     <button id="search-button">Rechercher</button>
     <input type="text" id="manualSearchInput" placeholder="Rechercher une ville ou une adresse">
 <button id="manualSearchButton">Rechercher</button>
- <p class="link"><a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSgn7Ua3wOiYoVnr2Tl-dSiBucRC_w0mUEJdMmdmeySAEiEBkBGyLmjuXcCSkR_AYzt_r92du7FfWHk/pub?gid=1699587869&single=true&output=csv" target="_blank">CHIRO csv</a></p>
     <div id="legend">
       </br> <strong>Légende :</strong>
       <ul id="legend-list"></ul>
@@ -158,7 +144,7 @@
     let urgentMode = false;
     
 
-    const csvURL1 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSgn7Ua3wOiYoVnr2Tl-dSiBucRC_w0mUEJdMmdmeySAEiEBkBGyLmjuXcCSkR_AYzt_r92du7FfWHk/pub?gid=1699587869&single=true&output=csv';
+    const csvURL1 = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSgn7Ua3wOiYoVnr2Tl-dSiBucRC_w0mUEJdMmdmeySAEiEBkBGyLmjuXcCSkR_AYzt_r92du7FfWHk/pub?gid=653750889&single=true&output=csv';
     const csvURL2 = '';
     let currentCSV = csvURL1;
 
@@ -450,14 +436,14 @@ if (csvUrl === csvURL1 && status.trim().toLowerCase() === "intervention") {
                     };
                     marker.customIndex = markerCount;
                     marker.addListener("click", () => {
-                      infoWindow.setContent(`<div style="font-size:20px; font-weight:bold; color:#333;">${name} (${espece} ${Numero}<br>${jourdispo}<br>${info}<br>${Emoj} ${Emoj2})</div>`);
+                      infoWindow.setContent(`<div style="font-size:20px; font-weight:bold; color:#333;"> (${espece} <br>${jourdispo}<br>${info}<br>${Emoj} ${Emoj2})</div>`);
                       infoWindow.open(map, marker);
                       
                     });
                     markers.push(marker);
                     let debugLine = "";
                     if (csvUrl === csvURL1) {
-                      debugLine = `${repondu} ---> ${espece} | Numéro : ${Numero} | lieu découverte : ${cityName}  | appel : ${seil}`;
+                      debugLine = `${repondu} ---> ${espece} | lieu découverte : ${cityName}  | appel : ${seil}`;
                     } 
                     debugInfoHTML += `<div id="debug-line-${markerCount}" data-index="${markerCount}">${debugLine}</div>\n`;
                     markerCount++;
